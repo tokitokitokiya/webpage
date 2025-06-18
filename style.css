@@ -4,20 +4,78 @@ html, body {
     overflow: hidden;
   }
 
-  #overlay {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
-    border: 1px solid #000;
-    font-family: sans-serif;
-  }
+  /* ヘッダー */
+.site-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明 */
+  padding: 10px 0;
+  z-index: 1000;
+}
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+.nav-menu li {
+  margin: 0 15px;
+}
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.nav-menu a:hover {
+  text-decoration: underline;
+}
 
+/* メインコンテンツ */
+main {
+  padding-top: 80px; /* ヘッダー分 */
+  text-align: center;
+}
+.random-icons {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+.random-icons img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  transition: opacity 0.3s;
+}
+.moving-icon {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 60px;
+  animation: moveIcon 10s linear infinite;
+}
   canvas {
-    z-index: 1;
+    z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
   }
+
+  @keyframes moveIcon {
+  0%   { transform: translateX(-50%) translateY(0); }
+  25%  { transform: translateX(-40%) translateY(100px); }
+  50%  { transform: translateX(-30%) translateY(0); }
+  75%  { transform: translateX(-40%) translateY(-100px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 600px) {
+  .nav-menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .random-icons img {
+    width: 60px;
+    height: 60px;
+  }
+}

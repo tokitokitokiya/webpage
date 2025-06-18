@@ -6,15 +6,30 @@
     <title>うみく</title>
     <meta name="discription" content="事後日記">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="overlay">
-        <h1>見出し</h1> 
-        <p>UMI KU~</p>
-    </div>
-    <script src="kira.js"></script>
+    <header class="site-header">
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#portfolio">ポートフォリオ</a></li>
+                <li><a href="#writing">ライティング</a></li>
+                <li><a href="#diary">日記</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="random-icons">
+            <img class="hover-switch" src="img/dots.gif" data-alt="img/icon1-hover.png" alt="アイコン1">
+            <img class="hover-switch" src="img/ufo.PNG" data-alt="img/icon2-hover.png" alt="アイコン2">
+        </div>
+        <img class="moving-icon" src="img/ufo.PNG" alt="動くアイコン">
+        <script src="kira.js"></script>
+    </main>
+
 
 
 

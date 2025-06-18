@@ -1,30 +1,23 @@
 /* 1. 変数の定義 */
-const NUM_POINTS = 100;
-const MAX_LINE_DIST = 100;
-const points = [];
+let bgImage;
+const NUM_POINTS = 100; //点の数
+const MAX_LINE_DIST = 100; //線の数
+const points = []; //点の座標と速度配列
 
-/* デモ用 */
-const BASE_AREA = 960 * 540;
-let numPoints = NUM_POINTS;
-let maxLineDist = MAX_LINE_DIST;
+function preload() {
+  // 画像を読み込み
+  bgImage = loadImage('kaitei.jpg');
+}
 
 function setup() {
   /* 2. キャンバスの初期化 */
-  createCanvas(windowWidth, windowHeight); // デモ版の画面サイズ
-  // createCanvas(640, 640);
+  createCanvas(windowWidth, windowHeight); // 画面サイズ
   background(0);
   stroke(255, 100);
 
-  /* デモ用設定 */
-  const windowArea = width * height;
-  numPoints = floor(NUM_POINTS * windowArea / BASE_AREA);
-  numPoints = floor(constrain(numPoints, 100, 600));
-  maxLineDist = floor(MAX_LINE_DIST * windowArea / BASE_AREA);
-  maxLineDist = floor(constrain(maxLineDist, 60, 100));
-  
 
   /* 3. 点群の初期化 */
-  for (let i = 0; i < numPoints; i++) {
+  for (let i = 0; i < NUM_POINTS; i++) {
     const point = {
         x: random(width),
         y: random(height),
@@ -35,8 +28,23 @@ function setup() {
   }
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // 高さは固定、横幅だけ画面に合わせる
+}
+
 function draw() {
-  background(0);
+  background(250);
+    // キャンバスの横幅に画像を合わせる
+  let imgAspect = bgImage.height / bgImage.width;
+  let newWidth = 500;
+  let newHeight = newWidth * imgAspect;
+  if (width>=500){
+    newWidth = width;
+    newHeight = width * imgAspect;
+  }
+
+  // 背景に画像を表示
+  image(bgImage, 0, 0, newWidth, newHeight);
 
   /* 4. 点群のアップデート */
   for (const p of points) {
@@ -55,7 +63,7 @@ function draw() {
   for (let i = 0; i < points.length; i++) {
     for (let j = i + 1; j < points.length; j++) {
       const d = dist(points[i].x, points[i].y, points[j].x, points[j].y);
-      if (d <maxLineDist) {
+      if (d <MAX_LINE_DIST) {
         line(points[i].x, points[i].y, points[j].x, points[j].y);
       }
     }

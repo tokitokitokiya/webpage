@@ -41,12 +41,7 @@ $(document).ready(function(){
       $('html').css('overflow-y','scroll');
 
     }
-    
   })
-
-
-
-
 
   $('.rotateDownHoverTrigger').on('mouseenter',function(){
     $(this).removeClass('nikki');//要素にマウスが乗ったらrotateDoenというクラス名①をつける

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -5,36 +6,36 @@
     <meta charset="UTF-8">
     <title>うみく</title>
     <meta name="discription" content="事後日記">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="ウミクウ">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <h1>My Portfolio</h1>
+    <header class="site-header">
         <nav>
-          <a href="#profile">Profile</a>
-          <a href="#works">Works</a>
-          <a href="#contact">Contact</a>
+            <ul class="nav-menu">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#portfolio">ポートフォリオ</a></li>
+                <li><a href="#writing">ライティング</a></li>
+                <li><a href="#diary">日記</a></li>
+            </ul>
         </nav>
     </header>
-
     <main>
-        <div class="background"></div>
-        <div>
-            <script src="kira.js"></script>
+        <div class="random-icons">
+            <img class="hover-switch" src="img/dots.gif" data-alt="img/icon1-hover.png" alt="アイコン1">
+            <img class="hover-switch" src="img/ufo.PNG" data-alt="img/icon2-hover.png" alt="アイコン2">
         </div>
-    
-        <div class="icons" id="overlay">
-          <a href="page1.html"><img src="icon1.png" class="icon" style="top: 20%; left: 15%;"></a>
-          <a href="page2.html"><img src="icon2.png" class="icon" style="top: 50%; left: 60%;"></a>
-          <a href="page3.html"><img src="icon3.png" class="icon" style="top: 70%; left: 30%;"></a>
-          <a href="page4.html"><img src="icon4.png" class="icon" style="top: 35%; left: 75%;"></a>
-          <a href="page5.html"><img src="icon5.png" class="icon" style="top: 85%; left: 10%;"></a>
-        </div>
+        <img class="moving-icon" src="img/ufo.PNG" alt="動くアイコン">
+        <script src="kira.js"></script>
     </main>
+
+
+
+
+    
 </body>
+
 
 </html>

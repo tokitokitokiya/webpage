@@ -1,0 +1,83 @@
+* {     /*ユニバーサルセレクタで初期化 */
+    margin: 0;  
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html, body {
+    height: 100%;
+    font-family: sans-serif;
+    color: white;                /* ← 基本の文字色を白に設定 */
+}
+
+
+header {
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);  /* ← 白文字に合うように背景を暗く調整 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 1.5rem;
+  }
+
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;                /* ← ナビゲーションも白文字 */
+    font-weight: bold;
+}
+  
+nav a:hover {
+    text-decoration: underline;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('your-background.jpg') no-repeat center center/cover;
+    z-index: -1;
+  }
+  
+.icons {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+  
+.icon {
+    position: absolute;
+    width: 60px;
+    transition: transform 0.2s;
+}
+  
+.icon:hover {
+    transform: scale(1.2);
+}
+  
+
+#overlay {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 10;
+    padding: 10px;
+    border: 1px solid #000;
+    font-family: sans-serif;
+}
+
+canvas {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

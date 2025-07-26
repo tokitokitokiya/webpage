@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <title>二ニッキニッキナナナイッキ</title>
+    <meta name="description" content="日記日記ない日記">
+    <meta name="keywords" content="ウミクウ">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+</head>
+
+<style>
+    body{
+        color:#ffffff;
+        background:#000000;
+    }
+
+    .mojibtn{
+        color:#ffffff;
+    }
+
+    .listItem{
+        position:relative;
+    }
+
+    .listItem .nikki{
+        margin: 0 auto 30px;
+        height: 800px;
+    }
+
+
+    .listItem .fadeUp{
+        margin: 0 auto 30px;
+        height: 1000px;
+    }
+
+    /*imageタイプのモーダル中のimg要素の高さの最大値を画像サイズに制限*/
+    .modaal-image img {
+        max-height:120vh;
+    }
+
+
+    
+</style>
+
+
+<body onload="main()" >
+    <div>
+        <a href="../index.html" class="mojibtn">modoru?</a>
+    </div>
+
+    <!--※itemn()を使おうとして諦めた
+    <div>
+        <li class="listItem">
+            <img id="list" alt="nikki"/>
+        </li>
+    </div>
+    -->
+
+    <div id="listp" class="listItem">
+    </div>
+
+<!--
+    <div class="listItem">
+        <img src="nImg/nikki1.jpg" class="nikki popwin"/>
+        <img src="nImg/nikki2.jpg" class="nikki popwin"/>
+        <img src="nImg/nikki3.jpg" class="nikki popwin"/>
+        <img src="nImg/nikki4.jpg" class="nikki popwin"/>
+    </div>
+-->
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+    <script src="nikki.js"></script>
+</body>
+</html>

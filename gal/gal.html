@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <title>二ニッキニッキナナナイッキ</title>
+    <meta name="description" content="日記日記ない日記">
+    <meta name="keywords" content="ウミクウ">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        body{
+            color:#ffffff;
+            background:#000000;
+        }
+
+        /**
+        input {
+            font-size: 1.5rem;
+            width: 80%;
+            padding: 10px;
+        }
+        **/
+
+        .mojibtn {
+            color: #ffffff;
+        }
+
+        .gallery{/*ベースギャラリーを横並びに*/
+            display:flex;
+            flex-wrap:wrap;
+            justify-content: space-evenly;  
+            /* アイテムの間や周囲に間隔を配置する方法を定義
+            各アイテムを均等に配置し最初のアイテムは先頭に寄せ、最後のアイテムは末尾に寄せる */
+        }
+
+        .gallery li{
+            width:25vw;
+            min-width:250px;
+            max-width: 400px;
+            margin:0 10px;
+            list-style:none;/*リストのすべてのスタイルプロパティを設定 */
+        }
+
+        .gallery img{
+            max-width:100%;
+            height:auto;
+            /*
+            vertical-align:bottom;
+            */
+            /*画像の下にできる余白を削除*/
+        }
+
+        .hide-area{
+            display:none;
+        }
+
+        .modaal-fullscreen .modaal-content-container{
+            background:#000000;
+            color:#fff;
+            text-align: center;
+        }
+
+        
+        @media screen and (max-width:800px){
+            .modaal-fullscreen .modaal-content-container img{
+                max-width:100vw;
+            }
+        }
+        @media screen  and (min-width:801px){
+            .modaal-fullscreen .modaal-content-container img{
+                max-width:80vh;
+            }
+        }
+
+        .caption{
+            display:block;
+            padding:10px 0;
+        }
+
+    
+
+
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
+</head>>
+
+<body>
+    <a href="../index.html" class="mojibtn">modoru?</a>
+    <form action="ボタン押下で実行されるURL（「https://〜〜〜」より後ろの部分）" method="リクエストの種別（GETやPOSTなど）">
+        あなたのなまえをおしえて：<br>
+        <input type="text" name="title" placeholder="なまえ"/><br>
+        おはなししようよ：<br>
+        <textarea name="message" placeholder="話しかける"></textarea><br>
+        <input type="submit" value="実行"/>
+    </form>
+
+    <ul class="gallery">
+        <li><a href="#gallery-1" class="gallery-list"><img src="img/1.png" alt="サムネ1"/></a></li>
+        <li><a href="#gallery-2" class="gallery-list"><img src="img/2.png" alt="サムネ2"/></a></li>
+        <li><a href="#gallery-3" class="gallery-list"><img src="img/3.png" alt="サムネ3"/></a></li>
+        <li><a href="#gallery-4" class="gallery-list"><img src="img/4.png" alt="サムネ4"/></a></li>
+    </ul>
+
+    <section id="gallery-1" class="hide-area">
+        <p><img src="img/1-1.png" alt=""><span class="caption">1</span></p>
+        <p><img src="img/1-2.png" alt=""><span class="caption">2</span></p>
+        <p><img src="img/1-3.png" alt=""><span class="caption">3</span></p>
+    </section>
+
+    <section id="gallery-2" class="hide-area">
+        <p><img src="img/2-1.png" alt=""><span class="caption">1</span></p>
+    </section>
+
+    <section id="gallery-3" class="hide-area">
+        <p><img src="img/3-1.png" alt=""><span class="caption">1</span></p>
+        <p><img src="img/3-2.png" alt=""><span class="caption">2</span></p>
+    </section>
+
+    <section id="gallery-4" class="hide-area">
+        <p><img src="img/4-1.png" alt=""><span class="caption">1</span></p>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+    <script src="gal.js"></script>
+</body>
+
+</html>

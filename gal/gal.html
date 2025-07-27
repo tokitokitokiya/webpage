@@ -40,6 +40,7 @@
             min-width:250px;
             max-width: 400px;
             margin:0 10px;
+            z-index: 5; 
             list-style:none;/*リストのすべてのスタイルプロパティを設定 */
         }
 
@@ -62,6 +63,25 @@
             text-align: center;
         }
 
+        #chat-container {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            max-height: 40%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse; /* 新しいメッセージが下に来る */
+            padding: 10px;
+            background: none;
+            border-radius: 10px;
+            z-index: 1; /* 他アイコンより後ろ */
+        }
+
+        .message {
+            background: none; /* 背景なし */
+        }
+
         
         @media screen and (max-width:800px){
             .modaal-fullscreen .modaal-content-container img{
@@ -78,10 +98,6 @@
             display:block;
             padding:10px 0;
         }
-
-    
-
-
     </style>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
@@ -89,13 +105,16 @@
 
 <body>
     <a href="../index.html" class="mojibtn">modoru?</a>
-    <form action="ボタン押下で実行されるURL（「https://〜〜〜」より後ろの部分）" method="リクエストの種別（GETやPOSTなど）">
-        あなたのなまえをおしえて：<br>
-        <input type="text" name="title" placeholder="なまえ"/><br>
+    
+    <div class="form-area">
+        おまえのなまえ：<br>
+        <input type="text" id="name" placeholder="なまえ"/><br>
         おはなししようよ：<br>
-        <textarea name="message" placeholder="話しかける"></textarea><br>
-        <input type="submit" value="実行"/>
-    </form>
+        <textarea id="message" placeholder="話しかける"></textarea><br>
+        <button id="submit">送信</button>
+    </div>
+
+    <div id="chat-container"></div>
 
     <ul class="gallery">
         <li><a href="#gallery-1" class="gallery-list"><img src="img/1.png" alt="サムネ1"/></a></li>
@@ -126,17 +145,11 @@
 
 
 
-
-
-
-
-
-
     <script
     src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
     crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
     <script src="gal.js"></script>

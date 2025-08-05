@@ -67,10 +67,11 @@ function setup() {
     buttons.push(btn);
   }
 
-
   //目玉の画像を挿入
     const kurome = loadImage('img/alphatest.png');
     eyes.push(new Eye(0.4, 0.2, 0.5, 0.225, width, height)); 
+  
+  reSize=true;
 }
 
 
@@ -186,6 +187,7 @@ class Eye {
 
   koushin(){
     this.origin = createVector(this.wid * this.x, this.heigh * this.y);
+    this.pos = this.origin.copy();
   }
 
   show(target) {
@@ -207,7 +209,6 @@ class Eye {
     let t = 0.1;
     let easedT = this.easeInOut(t);
     this.pos = p5.Vector.lerp(this.pos, goal, easedT);
-
 
     fill(40, 100, 80);
     ellipse(this.pos.x, this.pos.y, this.r2, this.r2);

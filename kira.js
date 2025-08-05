@@ -1,8 +1,12 @@
 
 /* 1. 変数の定義 */
 let bgImage;
+let imgAspect;
+let newHeight;
+let newWidth;
 let buttons = [];
 let eyes = [];
+let reSize = false;
 const buttonPositions = [
   { x: 0.1, y: 0.225 },
   { x: 0.5, y: 0.25 },
@@ -72,15 +76,16 @@ function setup() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // 高さは固定、横幅だけ画面に合わせる
+  reSize=true;
 }
 
 
 function draw() {
   background(250);
-    // キャンバスの横幅に画像を合わせる
-  let imgAspect = bgImage.width / bgImage.height;
-  let newHeight = 800;
-  let newWidth = newHeight * imgAspect;
+  // キャンバスの横幅に画像を合わせる
+  imgAspect = bgImage.width / bgImage.height;
+  newHeight = 800;
+  newWidth = newHeight * imgAspect;
   if (height>=800){
     newHeight = height;
     newWidth = newHeight * imgAspect;
@@ -141,9 +146,13 @@ function draw() {
 
   let target = createVector(mouseX, mouseY);
   for (let eye of eyes) {
+    if(reSize){
+      eye.wid=newWidth;
+      eye.heigh=newHeight;
+      eye.koushin();
+      reSize=false;
+    }
     eye.show(target);
-    eye.wid=newWidth;
-    eye.heigh=newHeight;
   }
 }
 
@@ -163,22 +172,42 @@ class Eye {
     this.r3 = this.r2 * 0.5; // 黒目サイズ
 
     this.origin = createVector(wid * x, heigh * y);
-    this.pos = this.origin.copy(); // 現在の瞳の位置
+    this.pos = this.origin.copy();
+    this.shouldFollow = false;         // マウスを追うかどうかのフラグ
+    this.nextChangeTime = millis() + random(500, 2000); // 次に追うかどうかを切り替える時間
+  }
+
+  updateState() {
+    if (millis() > this.nextChangeTime) {
+      this.shouldFollow = random() < 0.5;  // 50%の確率で追う／追わないを切り替える
+      this.nextChangeTime = millis() + random(1000, 3000); // 次の切り替えまでの時間
+    }
+  }
+
+  koushin(){
+    this.origin = createVector(this.wid * this.x, this.heigh * this.y);
   }
 
   show(target) {
+    this.updateState(); // 状態更新
+
     fill(360);
     ellipse(this.origin.x, this.origin.y, this.r1, this.r1);
 
-    // 瞳の移動計算
-    let diff = p5.Vector.sub(target, this.origin);
-    let maxDist = (this.r1 - this.r2) / 2;
-    diff.setMag(constrain(diff.mag(), 0, maxDist));
-    let goal = p5.Vector.add(this.origin, diff);
+    let goal = this.pos.copy(); // デフォルトは動かない
+
+    if (this.shouldFollow) {
+      // 瞳の移動計算
+      let diff = p5.Vector.sub(target, this.origin);
+      let maxDist = (this.r1 - this.r2) / 2;
+      diff.setMag(constrain(diff.mag(), 0, maxDist));
+      goal = p5.Vector.add(this.origin, diff);
+    }
 
     let t = 0.1;
     let easedT = this.easeInOut(t);
     this.pos = p5.Vector.lerp(this.pos, goal, easedT);
+
 
     fill(40, 100, 80);
     ellipse(this.pos.x, this.pos.y, this.r2, this.r2);

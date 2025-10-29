@@ -1,6 +1,8 @@
 
 /* 1. 変数の定義 */
 let bgImage;
+let eyeImg1;
+let eyeImg2;
 let imgAspect;
 let newHeight;
 let newWidth;
@@ -21,7 +23,9 @@ const points = []; //点の座標と速度配列
 
 function preload() {
   // 画像を読み込み
-  bgImage = loadImage('img/haikei.jpg');
+  bgImage = loadImage('img/haikei2.jpg');
+  eyeImg1 = loadImage("img/mabuta.png"); // 白目用
+  eyeImg2 = loadImage("img/kurome.png"); // 黒目または瞳用
 }
 
 
@@ -69,7 +73,7 @@ function setup() {
 
   //目玉の画像を挿入
     const kurome = loadImage('img/alphatest.png');
-    eyes.push(new Eye(0.4, 0.2, 0.5, 0.225, width, height)); 
+    eyes.push(new Eye(0.4, 0.2, 0.5, 0.225, newWidth*0.2, newHeight*0.2)); 
   
   reSize=true;
 }
@@ -163,7 +167,7 @@ class Eye {
   constructor(a1, a2, x, y, wid, heigh) {
     this.a1 = a1;
     this.a2 = a2;
-    this.x = x;
+      this.x = x;
     this.y = y;
     this.wid = wid;
     this.heigh = heigh;
@@ -193,9 +197,6 @@ class Eye {
   show(target) {
     this.updateState(); // 状態更新
 
-    fill(360);
-    ellipse(this.origin.x, this.origin.y, this.r1, this.r1);
-
     let goal = this.pos.copy(); // デフォルトは動かない
 
     if (this.shouldFollow) {
@@ -210,10 +211,10 @@ class Eye {
     let easedT = this.easeInOut(t);
     this.pos = p5.Vector.lerp(this.pos, goal, easedT);
 
-    fill(40, 100, 80);
-    ellipse(this.pos.x, this.pos.y, this.r2, this.r2);
-    fill(0);
-    ellipse(this.pos.x, this.pos.y, this.r3, this.r3);
+    // 黒目（png2.png）
+    image(eyeImg2, this.pos.x, this.pos.y,newWidth*0.2,newHeight*0.2);
+    // 白目（png1.png）
+    image(eyeImg1, this.origin.x, this.origin.y,newWidth*0.2,newHeight*0.2);
   }
 
   easeInOut(t) {

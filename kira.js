@@ -1,11 +1,10 @@
 
 /* 1. 変数の定義 */
 let bgImage;
-let eyeImg1;
-let eyeImg2;
+let mabuta, kurome;
 let imgAspect;
-let newHeight;
-let newWidth;
+let newHeight=800;
+let newWidth=800;
 let buttons = [];
 let eyes = [];
 let reSize = false;
@@ -24,8 +23,8 @@ const points = []; //点の座標と速度配列
 function preload() {
   // 画像を読み込み
   bgImage = loadImage('img/haikei2.jpg');
-  eyeImg1 = loadImage("img/mabuta.png"); // 白目用
-  eyeImg2 = loadImage("img/kurome.png"); // 黒目または瞳用
+  mabuta = loadImage("img/mabuta.png"); // 白目用
+  kurome = loadImage("img/kurome.png"); // 黒目または瞳用
 }
 
 
@@ -72,15 +71,8 @@ function setup() {
   }
 
   //目玉の画像を挿入
-    const kurome = loadImage('img/alphatest.png');
-    eyes.push(new Eye(0.4, 0.2, 0.5, 0.225, newWidth*0.2, newHeight*0.2)); 
+  eyes.push(new Eye(0, newHeight*0.2, 100, newWidth*0.2, newHeight*0.2)); 
   
-  reSize=true;
-}
-
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight); // 高さは固定、横幅だけ画面に合わせる
   reSize=true;
 }
 
@@ -149,36 +141,32 @@ function draw() {
   }
 
 
-  let target = createVector(mouseX, mouseY);
   for (let eye of eyes) {
     if(reSize){
       eye.wid=newWidth;
       eye.heigh=newHeight;
-      eye.koushin();
+      eye.koushin(mouseX,mouseY);
       reSize=false;
+      console.log(eye.wid,eye.heigh);
     }
-    eye.show(target);
+    eye.show();
   }
 }
 
 
 
 class Eye {
-  constructor(a1, a2, x, y, wid, heigh) {
-    this.a1 = a1;
-    this.a2 = a2;
-      this.x = x;
+  constructor(x, y, r, wid, heigh) {
+    this.x = x;
     this.y = y;
     this.wid = wid;
     this.heigh = heigh;
+    this.mx=1;
+    this.my=1;
+    this.angle=1;
+    this.r=r;
 
-    this.r1 = a1 * wid;
-    this.r2 = a2 * wid;
-    this.r3 = this.r2 * 0.5; // 黒目サイズ
-
-    this.origin = createVector(wid * x, heigh * y);
-    this.pos = this.origin.copy();
-    this.shouldFollow = false;         // マウスを追うかどうかのフラグ
+    this.shouldFollow = true;         // マウスを追うかどうかのフラグ
     this.nextChangeTime = millis() + random(500, 2000); // 次に追うかどうかを切り替える時間
   }
 
@@ -189,35 +177,46 @@ class Eye {
     }
   }
 
-  koushin(){
-    this.origin = createVector(this.wid * this.x, this.heigh * this.y);
-    this.pos = this.origin.copy();
+  koushin(mousex,mousey){
+    this.mx = mousex;
+    this.my = mousey;
+    this.angle = Math.atan2(this.my-this.y, this.mx-this.x);
   }
 
-  show(target) {
+  show() {
     this.updateState(); // 状態更新
+    push();
+    translate(this.x, this.y);
+    let rx=this.mx-this.x;
+    let ry=this.my-this.y;
+    fill(254);
+    ellipse(this.x,this.y,100,100);
 
-    let goal = this.pos.copy(); // デフォルトは動かない
-
-    if (this.shouldFollow) {
-      // 瞳の移動計算
-      let diff = p5.Vector.sub(target, this.origin);
-      let maxDist = (this.r1 - this.r2) / 2;
-      diff.setMag(constrain(diff.mag(), 0, maxDist));
-      goal = p5.Vector.add(this.origin, diff);
+    if(sq(rx)+sq(ry)<=sq(this.r/2)){
+      image(kurome, this.mx, this.my,this.wid,this.heigh);
+    }else{
+      rotate(this.angle);
+      image(kurome,this.r/2, this.r/2, this.wid,this.heigh);
     }
+    pop();
 
     let t = 0.1;
     let easedT = this.easeInOut(t);
-    this.pos = p5.Vector.lerp(this.pos, goal, easedT);
 
     // 黒目（png2.png）
-    image(eyeImg2, this.pos.x, this.pos.y,newWidth*0.2,newHeight*0.2);
+    //image(kurome, this.pos.x, this.pos.y,newWidth*0.2,newHeight*0.2);
     // 白目（png1.png）
-    image(eyeImg1, this.origin.x, this.origin.y,newWidth*0.2,newHeight*0.2);
+    image(mabuta, this.x, this.y,newWidth*0.2,newHeight*0.2);
   }
 
   easeInOut(t) {
     return t * t * (3 - 2 * t);
   }
+}
+
+
+/* キャンバスのリサイズ */
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // 高さは固定、横幅だけ画面に合わせる
+  reSize=true;
 }

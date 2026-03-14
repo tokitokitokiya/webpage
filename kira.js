@@ -200,20 +200,10 @@ class Eye {
       //console.log(this.r*cos(this.angle)/2-this.sx);
     }
 
-
-    let t = 0.1;
-    let easedT = this.easeInOut(t);
-
-    // 黒目（png2.png）
-    //image(kurome, newWidth/12,newHeight/6,newWidth/12,newHeight/6);
-    // 白目
+    // 白目追加
     image(mabuta, this.x,this.y,this.wid,this.heigh);
     //fill(100,100);
     //ellipse(this.x+this.sx, this.y+this.sy,this.r/3*2);
-  }
-
-  easeInOut(t) {
-    return t * t * (3 - 2 * t);
   }
 }
 

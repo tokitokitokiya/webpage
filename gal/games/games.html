@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>自作ゲーム一覧</title>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+    /* トップへ戻るボタン */
+    .top-button {
+      display: inline-block;
+      margin: 20px;
+      padding: 10px 15px;
+      background: #222;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid #555;
+    }
+
+    .top-button:hover {
+      background: #444;
+    }
+
+    /* ゲームリスト */
+    .game-list {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .game-item {
+      display: flex;
+      border-bottom: 1px solid #333;
+      padding: 20px 0;
+      align-items: center;
+    }
+
+    /* サムネイル */
+    .thumbnail {
+      width: 200px;
+      height: 120px;
+      background-color: #111;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* テキスト部分 */
+    .game-info {
+      flex: 1;
+    }
+
+    .game-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .game-title:hover {
+      text-decoration: underline;
+    }
+
+    .game-description {
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 上部トップボタン -->
+  <a href="../index.html" class="top-button">← トップへ戻る</a>
+
+  <div class="game-list">
+
+    <!-- ゲーム1 -->
+    <div class="game-item">
+      <a href="game1.html" class="thumbnail">
+        <img src="thumbs/game1.png" alt="Game1">
+      </a>
+
+      <div class="game-info">
+        <a href="game1.html" class="game-title">惑星爆破</a>
+        <div class="game-description">
+          惑星爆破スコアを競う簡単なシューティングゲーム。
+        </div>
+      </div>
+    </div>
+
+    <!-- ゲーム2 -->
+    <div class="game-item">
+      <a href="game2.html" class="thumbnail">
+        <img src="thumbs/game2.png" alt="Game2">
+      </a>
+
+      <div class="game-info">
+        <a href="game2.html" class="game-title">お前のこと誰が好きなん</a>
+        <div class="game-description">
+          質問に正解してヒス男の機嫌を取ろう。好感度は減点方式。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 下部トップボタン -->
+  <a href="../index.html" class="top-button">← トップへ戻る</a>
+
+</body>
+</html>
